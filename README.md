@@ -48,7 +48,7 @@ Parses timestamps, inspects shape and dtypes.
 
 Key columns: distance (km), duration (min), gender, age_group, country, major.
 
-Exploratory Data Analysis
+## Exploratory Data Analysis
 1. Pace Distribution
 python
 Copy
@@ -99,7 +99,7 @@ plt.show()
 
 Figure: Displays training load fluctuations—notice dips around typical holiday periods.
 
-Data Cleaning & Preprocessing
+## Data Cleaning & Preprocessing
 Remove invalid runs (zero distance ⇒ undefined pace).
 
 Handle missing: drop rows missing critical fields; impute or group rare categories.
