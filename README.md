@@ -51,6 +51,16 @@ Parses timestamps, inspects shape and dtypes.
 Key columns: distance (km), duration (min), gender, age_group, country, major.
 
 ## Exploratory Data Analysis
+
+I visualized key patterns in the data. For example, histograms of run times or distances help reveal their distributions. The figure below illustrates a histogram-like distribution of marathon finish times (from an example race); most runners finish around 3–5 hours, with female runners (red) tending toward slightly longer times than males (blue)【50†】. This highlights how performance varies by gender and distance. 
+
+Figure: Distribution of marathon finish times by gender (blue = men, red = women). This kind of histogram shows that most finishers cluster around 4 hours, with women on average finishing later than men【50†】. We also used boxplots to compare distributions across groups. For instance, the plot below shows a sample boxplot (of “LADs” metric across three clusters). Each box spans the interquartile range with a median line, whiskers to show the full range, and outliers marked individually. In our project one could create similar boxplots of running pace or distance broken down by age group or country to compare training volume or intensity across subgroups【59†】. 
+
+Figure: Example boxplot comparison across three categories. Boxplots (one per category) visualize the distribution (median, IQR, and outliers) of a numeric variable. In practice we would use this to compare, say, average pace across different age groups or countries【59†】. We computed a correlation matrix and plotted it as a heatmap to detect strong relationships between variables. The heatmap below (for a different example dataset) illustrates how pairwise feature correlations range from –0.4 (deep blue) to +1.0 (bright red)【67†】. In our running data, we would inspect correlations among distance, duration, pace, and engineered features (e.g. 7-day totals) to identify redundancies. For example, distance and duration are highly correlated (longer runs take more time), which would appear as a bright diagonal element if plotted. 
+
+Figure: Correlation matrix heatmap (from an example dataset). Colors indicate the strength and sign of pairwise correlations (red = strong positive, blue = strong negative). In our analysis, a similar heatmap would help spot which running features (distance, duration, pace, cumulative distance, etc.) are strongly related【67†】. We also examined time series trends in the data. For example, one can aggregate runs by day or week to see how activity changed over time (e.g. to assess seasonal effects or the impact of events like races or lockdowns). The chart below (from a different example) shows multiple time series on the same axes. In our context we might plot daily total distance or average pace for each week of 2020, highlighting trends or anomalies over the year【70†】. Such plots can reveal patterns like gradually increasing training volume or sudden drops (e.g. due to COVID-19 restrictions). 
+
+Figure: Multi-line time series chart (example). Each colored line tracks a count over time. In our project we would create similar plots (e.g. daily or weekly aggregate distance) to visualize how training loads evolve throughout the year【70†】.
 1. Pace Distribution
 python
 Copy
