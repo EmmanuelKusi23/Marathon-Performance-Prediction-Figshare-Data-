@@ -43,7 +43,7 @@ df = pd.read_csv('data/run_2020.csv', parse_dates=['datetime'])
 print(df.shape)        # (58_326, 8)
 print(df.dtypes)
 df.head()
-
+```
 Parses timestamps, inspects shape and dtypes.
 
 Key columns: distance (km), duration (min), gender, age_group, country, major.
@@ -110,9 +110,7 @@ Numeric → median impute + standard scale
 
 Categorical → frequent-value impute + one-hot encode
 
-python
-Copy
-Edit
+```python
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -135,36 +133,31 @@ preprocessor = ColumnTransformer([
     ('nums', num_pipe, num_cols),
     ('cats', cat_pipe, cat_cols)
 ])
-Feature Engineering
+```
+## Feature Engineering
 Rolling 7 day metrics:
 
-python
-Copy
-Edit
+```python
 df = df.sort_values(['athlete','datetime'])
 df['7d_avg_pace']      = df.groupby('athlete')['pace'].rolling(7, min_periods=1).mean().reset_index(0,drop=True)
 df['7d_total_distance'] = df.groupby('athlete')['distance'].rolling(7, min_periods=1).sum().reset_index(0,drop=True)
 Lag features:
 
-python
-Copy
+```python
 Edit
 df['prev_pace']       = df.groupby('athlete')['pace'].shift(1).fillna(df['pace'])
 df['days_since_last'] = df.groupby('athlete')['datetime'].diff().dt.days.fillna(7)
 Cumulative distance:
 
-python
-Copy
-Edit
+```python
 df['cum_dist'] = df.groupby('athlete')['distance'].cumsum()
 These features capture recent load, recovery, and long-term volume.
+```
 
-Modeling & Cross-Validation
+## Modeling & Cross-Validation
 We compare Ridge, Lasso, and Random Forest regressors using 5-fold CV (scoring: MAE, R²).
 
-python
-Copy
-Edit
+```python
 from sklearn.linear_model import Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score, KFold
@@ -190,13 +183,11 @@ Model	MAE (min/km)	R²
 Ridge	0.0036	0.9999
 RF	0.0788	0.9110
 Lasso	0.1019	0.9812
-
+```
 Ridge overfits; RF chosen for generalization.
 
 Hyperparameter Tuning & Evaluation
-python
-Copy
-Edit
+```python
 from sklearn.model_selection import GridSearchCV
 
 param_grid = {
@@ -214,14 +205,11 @@ print("CV MAE:", -grid.best_score_)
 On the held-out test set:
 
 arduino
-Copy
-Edit
 Test MAE: 0.095 min/km  
 Test R²:  0.416
+```
 Feature Importances
-python
-Copy
-Edit
+```python
 import matplotlib.pyplot as plt
 
 rf = grid.best_estimator_.named_steps['model']
@@ -239,7 +227,7 @@ plt.title('Top 10 Feature Importances')
 plt.xlabel('Importance')
 plt.gca().invert_yaxis()
 plt.show()
-
+```
 Figure: Most predictive features include recent average pace and 7-day total distance.
 
 Model Deployment & Usage
@@ -255,9 +243,7 @@ dump(pipeline, 'trained_pipeline.joblib')
 PYCODE
 Load and predict on new data:
 
-python
-Copy
-Edit
+```python
 from joblib import load
 import pandas as pd
 
@@ -276,13 +262,13 @@ new_run = pd.DataFrame([{
 
 predicted_pace = pipe.predict(new_run)
 print(f"Predicted pace: {predicted_pace[0]:.2f} min/km")
+```
 References
 Afonseca, C., et al. (2022). Long-distance running training logs (2019–2020). Figshare/Kaggle.
 
 Original Parquet → CSV conversion script
 
-Copy
-Edit
+
 
 
 
