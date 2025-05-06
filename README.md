@@ -31,6 +31,8 @@ This project demonstrates a full machine-learning pipeline for predicting runnin
 ---
 
 ## Data Loading & Setup
+We set up the Python environment (Pandas, NumPy, scikit-learn, etc.) and loaded the CSV file. Initial checks confirmed the data shape
+. The numeric fields (distance, duration) and categorical fields (gender, age_group, country, major) were examined. For example, the distance column has a mean of ≈28.82 km (median 20.80 km) and ranges from 0 up to ~444.84 km. Categorical summaries showed two genders (M and F) with more males (43,759) than females, and three age groups (18–34, 35–54, 55+) with the middle group (35–54) being most common. Missing values were minimal (511 missing country, 1 missing major), and no duplicate rows were found.
 
 ```python
 import pandas as pd
