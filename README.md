@@ -172,7 +172,7 @@ This scatter‐plot examines how pace (min/km) varies with run distance (km). Ke
 > By resolving data issues and exploring these patterns, coaches and athletes can optimize the balance between speedwork and endurance for more effective marathon preparation.
 
 3. Feature Correlations
-![Correlation Matrix](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/71da31496282b920e6aff597083c3fdcf71bb627/pace%20vs%20distance.png)
+![Correlation Matrix](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/e474e8b6b4699295830041e4da508ddf97fb7d6c/correlation%20matrix.png)
 This correlation analysis explores the relationships between key variables in a marathon training dataset using a **correlation matrix**. The analysis helps athletes and coaches optimize training strategies through data-driven insights.
 
 ---
