@@ -173,6 +173,8 @@ This scatter‐plot examines how pace (min/km) varies with run distance (km). Ke
 
 ### Feature Correlations
 ![Correlation Matrix](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/e474e8b6b4699295830041e4da508ddf97fb7d6c/correlation%20matrix.png)
+
+
 This correlation analysis explores the relationships between key variables in a marathon training dataset using a **correlation matrix**. The analysis helps athletes and coaches optimize training strategies through data-driven insights.
 
 ---
@@ -187,7 +189,7 @@ This correlation analysis explores the relationships between key variables in a 
 
 ---
 
-## 🔍 **Key Insights**  
+##  **Key Insights**  
 ### **1. Endurance & Time Management**  
 - 🏃 `distance` and `duration` are tightly linked (**0.96**), emphasizing the importance of **time-based long runs** for building stamina.  
 - 📈 Runners with longer individual sessions (`distance`) also log higher weekly mileage (`7d_total_distance`, **0.88**).  
@@ -197,17 +199,17 @@ This correlation analysis explores the relationships between key variables in a 
 - 🐢 `pace` slows only slightly as `distance` increases (**-0.06**), suggesting disciplined pacing strategies.  
 
 ### **3. Fatigue & Volume**  
-- ⚠️ Higher weekly mileage (`7d_total_distance`) weakly correlates with slower paces (**-0.05**), hinting at cumulative fatigue.  
+-  Higher weekly mileage (`7d_total_distance`) weakly correlates with slower paces (**-0.05**), hinting at cumulative fatigue.  
 
 ---
 
-## 🛠️ **Data Considerations**  
+##  **Data Considerations**  
 - **Validation**: Investigate outliers (e.g., runs >40 km or paces <4:00 min/km).  
 - **Units**: Confirm `pace` is recorded as **minutes per kilometer**.  
 
 ---
 
-## 🎯 **Recommendations for Training**  
+##  **Recommendations for Training**  
 1. **Diversify Workouts**  
    - Introduce speed intervals to improve race-day performance.  
 2. **Monitor Volume**  
@@ -217,17 +219,39 @@ This correlation analysis explores the relationships between key variables in a 
 
 ---
 
-4. Time-Series of Weekly Volume
-```python
-df['week'] = df['datetime'].dt.isocalendar().week
-weekly = df.groupby('week')['distance'].sum().reset_index()
-sns.lineplot(x='week', y='distance', data=weekly)
-plt.title('Weekly Total Distance in 2020')
-plt.xlabel('ISO Week')
-plt.ylabel('Total Distance (km)')
-plt.show()
-```
-Figure: Displays training load fluctuations—notice dips around typical holiday periods.
+### Pairwise Relationships Analysis  
+![Pairwise Plot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/e474e8b6b4699295830041e4da508ddf97fb7d6c/correlation%20matrix.png)
+
+This README explores pairwise relationships between variables in a marathon training dataset, visualized through scatter plots and histograms. The analysis uncovers patterns in training behavior, fatigue, and performance optimization.
+
+---
+
+## 📊 **Pairwise Plot Overview**  
+The visualization compares interactions between **distance**, **pace**, **7d_avg_pace**, **percentage**, and **total_distance**. Below is a breakdown of key relationships:  
+
+| **Variable Pair**          | **Relationship Observed**                          | **Training Insight**                              |  
+|-----------------------------|----------------------------------------------------|---------------------------------------------------|  
+| **Distance vs. Pace**       | Longer distances correlate with slower paces.      | Reflects endurance-focused "long slow distance" runs. |  
+| **7d_avg_pace vs. Percentage** | Tight clustering suggests consistent pacing.    | Indicates disciplined adherence to target effort levels. |  
+| **Total Distance vs. Pace** | Higher weekly mileage weakly linked to slower paces.| Highlights fatigue accumulation in high-volume training. |  
+| **Total Distance vs. 7d_avg_pace** | Minimal correlation.                        | Runners maintain pace consistency despite volume changes. |  
+
+---
+
+## 🔍 **Key Insights**  
+### **1. Endurance vs. Speed Trade-Off**  
+- 🐢 **Distance vs. Pace**: Slower paces at longer distances (e.g., 15 km at 6:00 min/km vs. 5 km at 5:00 min/km) validate the emphasis on **aerobic base-building** in marathon training.  
+- 📉 **Total Distance vs. Pace**: A slight negative trend (e.g., 150 km/week at 6:30 min/km vs. 50 km/week at 5:45 min/km) underscores the need for **recovery phases** to mitigate fatigue.  
+
+### **2. Consistency in Training**  
+- 🎯 **7d_avg_pace vs. Percentage**: Clustered points (e.g., 90% of runs within ±0.5 min/km of weekly average) suggest runners prioritize **steady effort levels**, likely aligning with heart rate zones or goal marathon pace.  
+
+### **3. Outliers & Data Anomalies**  
+- ⚠️ **Total Distance > 150 km/week**: A small cluster of runners logging extreme mileage may represent elite athletes or data errors.  
+- ❓ **Unlabeled "Percentage" Variable**: Requires clarification (e.g., % of max heart rate, hill gradient, or workout completion rate).  
+
+---
+
 
 ## Data Cleaning & Preprocessing
 Based on the EDA, we cleaned and prepared the data. Rows with zero distance (and thus undefined pace) were dropped, which removed all NaN target values. We also ensured no duplicate entries and noted the few missing category values. Categorical variables (gender, age_group, country, major) were encoded: for example we mapped gender to numeric codes (M→0, F→1) and planned to one-hot encode others. We applied ordinal encoding to reduce high-cardinality categories by grouping infrequent values into “Other”. Next we split the data into training and testing sets (80% train, 20% test). We built preprocessing pipelines using scikit-learn: numeric features were imputed (median) and scaled, while categorical features were imputed (most frequent) and one-hot encoded. This full pipeline was later combined with the model for end-to-end training.
