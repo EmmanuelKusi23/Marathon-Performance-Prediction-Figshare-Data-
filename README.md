@@ -102,25 +102,48 @@ Weekly mileage distribution is critical for monitoring training volume. A bimoda
 
 
 **Conclusion:** These distributions provide insight into training patterns, variability, and workload. Including both daily and rolling-window analyses offers a comprehensive view of an athlete's performance and training load over time.
-1. Pace Distribution
-```python
-df['pace'] = df['duration'] / df['distance']
-sns.histplot(df['pace'], bins=50, kde=True)
-plt.title('Distribution of Running Pace (min/km)')
-plt.xlabel('Pace (min per km)')
-plt.show()
-```
-Figure: Most runs cluster between 4 and 6 min/km. The KDE curve highlights skew toward slower paces.
+## Boxplot Analysis of Marathon Training Metrics
 
-2. Pace by Age Group
-```python
-sns.boxplot(x='age_group', y='pace', data=df)
-plt.title('Pace by Age Group')
-plt.xlabel('Age Group')
-plt.ylabel('Pace (min/km)')
-plt.show()
-```
-Figure: Boxplots reveal that younger athletes (18–34) tend to have slightly faster median paces than older groups (35–54, 55+).
+This analysis interprets a boxplot of four key marathon training metrics: **distance**, **duration**, **pace**, and **total distance**. The aim is to identify patterns, spot anomalies, and offer insights for optimizing performance.
+
+---
+
+### Dataset & Visualization Overview
+The boxplot summarizes training sessions from marathon runners, showing medians, spreads, and outliers. These distributions help refine training strategies and monitor athlete readiness.
+
+---
+
+### Metric Insights
+
+**1. Distance:**
+- Median: 10–20 km, typical for mid-week runs.
+- Outliers >30 km suggest long-run sessions or advanced training.
+- *Insight:* High outliers support endurance development crucial for marathon prep.
+
+**2. Duration:**
+- Median: 60–120 minutes.
+- Outliers >180 minutes imply long, possibly recovery or acclimatization runs.
+- *Insight:* Duration variability reflects workout diversity (tempo, long, recovery).
+
+**3. Pace:**
+- Notable anomaly: 70.949 likely a data error.
+- Corrected, aligns with elite or recreational pace levels.
+- *Insight:* Pace range indicates training periodization; anomalies need cleaning.
+
+**4. Total Distance:**
+- Median: ~74 km/week, suitable for intermediate runners.
+- Outliers >100 km/week could reflect peak loads or risk of overtraining.
+- *Insight:* Weekly mileage is key for load monitoring and taper strategy.
+
+---
+
+### Training Implications
+- **Balance:** The distribution supports the 80/20 principle—mostly low-intensity runs.
+- **Anomaly Detection:** Outliers reveal either structured intensity shifts or data errors.
+- **Optimization:** Boxplot insights allow coaches to diversify training and mitigate risk.
+
+This visualization supports data-driven coaching and smarter self-monitoring for marathon success.
+![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/546bc18052721d9191f0971e6d26b8b96c3efdf2/distribution%20of%20distance.png)
 
 3. Feature Correlations
 ```python
