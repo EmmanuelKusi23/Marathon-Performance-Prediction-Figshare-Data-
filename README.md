@@ -74,7 +74,7 @@ The distribution of individual run distances highlights training habits, reveali
 
 Run durations mirror distances, showing most workouts are shorter in time, with the long runs appearing less frequently, confirming a right-skewed duration distribution.
 
-![Duration Distribution](images/duration_distribution.png)
+![Duration Distribution](duration_distribution.png)
 
 
 ### 3. Pace
