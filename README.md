@@ -88,7 +88,7 @@ Pace distribution centers around the athlete’s typical training speeds. The hi
 
 Averaging pace over 7-day windows smooths daily variability, highlighting longer-term trends in performance.
 
-![7d Average Pace Distribution](images/7d_avg_pace_distribution.png)
+![7d Average Pace Distribution](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/200b3dbd9beb06442878f6fcccbcd646fce4fe7d/distribution%20of%20distance%203.png)
 
 
 
