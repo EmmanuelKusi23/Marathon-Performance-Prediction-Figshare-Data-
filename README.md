@@ -146,7 +146,7 @@ This visualization supports data-driven coaching and smarter self-monitoring for
 ![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
 
 ## Analysis: Pace vs. Distance in Marathon Training
-![Scatterplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
+![Scatterplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/71da31496282b920e6aff597083c3fdcf71bb627/pace%20vs%20distance.png)
 
 This scatter‐plot examines how pace (min/km) varies with run distance (km). Key takeaways:
 
@@ -170,15 +170,52 @@ This scatter‐plot examines how pace (min/km) varies with run distance (km). Ke
   - **Performance Correlations:** Link cleaned training metrics to race outcomes.
 
 > By resolving data issues and exploring these patterns, coaches and athletes can optimize the balance between speedwork and endurance for more effective marathon preparation.
+
 3. Feature Correlations
-```python
-features = ['distance','duration','pace']
-corr = df[features].corr()
-sns.heatmap(corr, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix')
-plt.show()
-```
-Figure: Strong positive correlation between distance and duration (ρ≈0.85); pace moderately inversely correlated with distance.
+![Correlation Matrix](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/71da31496282b920e6aff597083c3fdcf71bb627/pace%20vs%20distance.png)
+This correlation analysis explores the relationships between key variables in a marathon training dataset using a **correlation matrix**. The analysis helps athletes and coaches optimize training strategies through data-driven insights.
+
+---
+
+## 📊 **Correlation Matrix Overview**  
+| Variable Pair               | Coefficient | Interpretation                                  |  
+|-----------------------------|-------------|------------------------------------------------|  
+| `distance` vs. `duration`   | **0.96**    | Very strong positive correlation.              |  
+| `pace` vs. `7d_avg_pace`    | **0.99**    | Near-perfect positive correlation.             |  
+| `distance` vs. `7d_total_distance` | **0.88** | Strong positive correlation.          |  
+| `pace` vs. `distance`       | **-0.06**   | Negligible negative correlation.               |  
+
+---
+
+## 🔍 **Key Insights**  
+### **1. Endurance & Time Management**  
+- 🏃 `distance` and `duration` are tightly linked (**0.96**), emphasizing the importance of **time-based long runs** for building stamina.  
+- 📈 Runners with longer individual sessions (`distance`) also log higher weekly mileage (`7d_total_distance`, **0.88**).  
+
+### **2. Pace Consistency**  
+- ⏱️ `pace` and `7d_avg_pace` show near-identical trends (**0.99**), indicating consistent pacing across training sessions.  
+- 🐢 `pace` slows only slightly as `distance` increases (**-0.06**), suggesting disciplined pacing strategies.  
+
+### **3. Fatigue & Volume**  
+- ⚠️ Higher weekly mileage (`7d_total_distance`) weakly correlates with slower paces (**-0.05**), hinting at cumulative fatigue.  
+
+---
+
+## 🛠️ **Data Considerations**  
+- **Validation**: Investigate outliers (e.g., runs >40 km or paces <4:00 min/km).  
+- **Units**: Confirm `pace` is recorded as **minutes per kilometer**.  
+
+---
+
+## 🎯 **Recommendations for Training**  
+1. **Diversify Workouts**  
+   - Introduce speed intervals to improve race-day performance.  
+2. **Monitor Volume**  
+   - Balance weekly mileage to avoid overtraining.  
+3. **Leverage Consistency**  
+   - Use `7d_avg_pace` to set realistic pacing goals.  
+
+---
 
 4. Time-Series of Weekly Volume
 ```python
