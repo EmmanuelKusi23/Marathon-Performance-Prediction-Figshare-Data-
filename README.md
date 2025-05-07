@@ -375,7 +375,39 @@ arduino
 Test MAE: 0.095 min/km  
 Test R²:  0.416
 ```
-Feature Importances
+## Feature Importances
+### Top 10 Feature Importances for Marathon Performance Prediction
+
+| Feature               | Importance Score | 
+|-----------------------|------------------|
+| 7d_avg_pace           | 0.911035         |
+| prev_pace             | 0.058897         |
+| distance              | 0.005886         |
+| 7d_total_distance     | 0.003969         |
+| annual_cum_dist       | 0.003436         |
+| major_Other           | 0.003382         |
+| gender_F              | 0.002627         |
+| age_group_18 - 34     | 0.002371         |
+| pace_x_cumdist        | 0.002362         |
+| country_Norway        | 0.001950         |
+
+---
+
+#### Observations & Interpretation:
+The feature importance analysis reveals that **7d_avg_pace** (7-day average pace) dominates the model predictions with an importance score of **0.911**, indicating that recent running pace is the strongest predictor of marathon performance. This suggests athletes' consistency in pacing during the final training week is critical for race outcomes. 
+
+The second-most important feature, **prev_pace** (previous pace), has a much lower score (**0.0589**), highlighting a significant drop-off in predictive power compared to the 7-day average. Other training metrics like **distance** and **7d_total_distance** show minimal influence, implying total training volume is less impactful than pace consistency. 
+
+Demographic features (e.g., `gender_F`, `age_group_18 - 34`, `country_Norway`) and interaction terms (`pace_x_cumdist`) have negligible importance, suggesting the model prioritizes behavioral/training data over static user characteristics. This aligns with marathon training principles, where performance is more influenced by recent effort than fixed traits.
+
+---
+
+#### Why This Matters:
+- **Focus on consistency**: The dominance of `7d_avg_pace` emphasizes tapering strategies and pace control in the final training week.
+- **Actionable insights**: Coaches/athletes should prioritize maintaining target paces over increasing volume.
+- **Model transparency**: Identifies key levers for performance improvement, reducing reliance on "black box" predictions.
+
+
 ```python
 import matplotlib.pyplot as plt
 
@@ -395,7 +427,7 @@ plt.xlabel('Importance')
 plt.gca().invert_yaxis()
 plt.show()
 ```
-Figure: Most predictive features include recent average pace and 7-day total distance.
+
 
 ## Model Deployment & Usage
 Finally, we serialize the full pipeline (preprocessing + model) using joblib. In a production or application setting, one could load this pipeline and make predictions on new data.
