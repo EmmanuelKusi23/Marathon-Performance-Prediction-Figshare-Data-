@@ -198,7 +198,7 @@ Lasso	0.1019	0.9812
 ```
 Ridge overfits; RF chosen for generalization.
 
-Hyperparameter Tuning & Evaluation
+## Hyperparameter Tuning & Evaluation
 ```python
 from sklearn.model_selection import GridSearchCV
 
@@ -242,7 +242,7 @@ plt.show()
 ```
 Figure: Most predictive features include recent average pace and 7-day total distance.
 
-Model Deployment & Usage
+## Model Deployment & Usage
 Serialize the full pipeline:
 
 bash
@@ -275,7 +275,7 @@ new_run = pd.DataFrame([{
 predicted_pace = pipe.predict(new_run)
 print(f"Predicted pace: {predicted_pace[0]:.2f} min/km")
 ```
-References
+## References
 Afonseca, C., et al. (2022). Long-distance running training logs (2019–2020). Figshare/Kaggle.
 
 Original Parquet → CSV conversion script
