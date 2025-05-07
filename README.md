@@ -74,14 +74,14 @@ The distribution of individual run distances highlights training habits, reveali
 
 Run durations mirror distances, showing most workouts are shorter in time, with the long runs appearing less frequently, confirming a right-skewed duration distribution.
 
-![Duration Distribution]([duration_distribution.png](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/023f526c914d64c64cd3e95432818aa25d4603c7/distribution%20of%20distance%201.png)
+![Duration Distribution](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/023f526c914d64c64cd3e95432818aa25d4603c7/distribution%20of%20distance%201.png)
 
 
 ### 3. Pace
 
 Pace distribution centers around the athlete’s typical training speeds. The histogram is roughly unimodal, with tails showing very slow recovery runs or faster race efforts.
 
-![Pace Distribution]([images/pace_distribution.png](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/99eed279fa508080abad53936db2eeee57417c30/distribution%20of%20distance%202.png)
+![Pace Distribution](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/99eed279fa508080abad53936db2eeee57417c30/distribution%20of%20distance%202.png)
 
 
 ### 4. 7-Day Average Pace
