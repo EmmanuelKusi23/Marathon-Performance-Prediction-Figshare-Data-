@@ -54,7 +54,7 @@ Key columns: distance (km), duration (min), gender, age_group, country, major.
 
 I visualized key patterns in the data. For example, histograms of run times or distances help reveal their distributions. The figure below illustrates a histogram-like distribution of marathon finish times (from an example race); most runners finish around 3–5 hours, with female runners (red) tending toward slightly longer times than males (blue)【50†】. This highlights how performance varies by gender and distance. 
 
-# Distribution of Marathon Run Metrics
+### Distribution of Marathon Run Metrics
 
 This explores the distribution of key running metrics in a marathon training dataset. Each section includes:
 
@@ -68,7 +68,7 @@ This explores the distribution of key running metrics in a marathon training dat
 
 The distribution of individual run distances highlights training habits, revealing many shorter runs for recovery and frequent mid-length workouts, with occasional long runs creating a right-skewed shape.
 
-![Distance Distribution](images/distance_distribution.png)
+![Distance Distribution](images/distribution_of_distance.png)
 
 ### 2. Duration
 
