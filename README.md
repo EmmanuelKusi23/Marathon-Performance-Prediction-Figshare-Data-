@@ -143,7 +143,7 @@ The boxplot summarizes training sessions from marathon runners, showing medians,
 - **Optimization:** Boxplot insights allow coaches to diversify training and mitigate risk.
 
 This visualization supports data-driven coaching and smarter self-monitoring for marathon success.
-![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/546bc18052721d9191f0971e6d26b8b96c3efdf2/distribution%20of%20distance.png)
+![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
 
 3. Feature Correlations
 ```python
