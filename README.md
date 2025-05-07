@@ -145,6 +145,31 @@ The boxplot summarizes training sessions from marathon runners, showing medians,
 This visualization supports data-driven coaching and smarter self-monitoring for marathon success.
 ![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
 
+## Analysis: Pace vs. Distance in Marathon Training
+![Scatterplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
+
+This scatter‐plot examines how pace (min/km) varies with run distance (km). Key takeaways:
+
+- **Data Anomalies**  
+  - Pace values span 200–1000 min/km (1000 min/km ≈ 16.7 h/km), indicating misplaced decimals or unit mismatches (e.g., seconds recorded as minutes).  
+  - Distances up to 400 km per “run” suggest aggregate volume or mislabeling.
+
+- **Core Trends (after cleaning)**  
+  - **Speedwork:** Runs <10 km cluster at faster paces (intervals, tempo sessions).  
+  - **Endurance:** Runs >30 km align with slower paces (long‐slow distances).  
+  - **Fatigue Curve:** Pace generally slows as distance increases, reflecting aerobic demands.
+
+- **Data-Cleaning Guidelines**  
+  1. Cap pace at ≤20 min/km; limit single runs to ≤50 km.  
+  2. Standardize units (minutes/km, kilometers).  
+  3. Separate per‐run vs. cumulative volumes.
+
+- **Next Steps**  
+  - **Subgroup Analysis:** Compare beginners vs. elites.  
+  - **Training Cycles:** Plot pace–distance over time to track adaptation.  
+  - **Performance Correlations:** Link cleaned training metrics to race outcomes.
+
+> By resolving data issues and exploring these patterns, coaches and athletes can optimize the balance between speedwork and endurance for more effective marathon preparation.
 3. Feature Correlations
 ```python
 features = ['distance','duration','pace']
