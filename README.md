@@ -74,7 +74,7 @@ The distribution of individual run distances highlights training habits, reveali
 
 Run durations mirror distances, showing most workouts are shorter in time, with the long runs appearing less frequently, confirming a right-skewed duration distribution.
 
-![Duration Distribution](duration_distribution.png)
+![Duration Distribution]([duration_distribution.png](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/023f526c914d64c64cd3e95432818aa25d4603c7/distribution%20of%20distance%201.png))
 
 
 ### 3. Pace
