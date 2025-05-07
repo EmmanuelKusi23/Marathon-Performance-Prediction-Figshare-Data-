@@ -220,9 +220,9 @@ This correlation analysis explores the relationships between key variables in a 
 ---
 
 ### Pairwise Relationships Analysis  
-![Pairwise Plot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/e474e8b6b4699295830041e4da508ddf97fb7d6c/correlation%20matrix.png)
+![Pairwise Plot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/d599dffab6c67ad5840806adb5c384d6d58664f3/pairwise%20plot.png)
 
-This README explores pairwise relationships between variables in a marathon training dataset, visualized through scatter plots and histograms. The analysis uncovers patterns in training behavior, fatigue, and performance optimization.
+This visualization explores pairwise relationships between variables in a marathon training dataset, visualized through scatter plots and histograms. The analysis uncovers patterns in training behavior, fatigue, and performance optimization.
 
 ---
 
@@ -244,11 +244,11 @@ The visualization compares interactions between **distance**, **pace**, **7d_avg
 - 📉 **Total Distance vs. Pace**: A slight negative trend (e.g., 150 km/week at 6:30 min/km vs. 50 km/week at 5:45 min/km) underscores the need for **recovery phases** to mitigate fatigue.  
 
 ### **2. Consistency in Training**  
-- 🎯 **7d_avg_pace vs. Percentage**: Clustered points (e.g., 90% of runs within ±0.5 min/km of weekly average) suggest runners prioritize **steady effort levels**, likely aligning with heart rate zones or goal marathon pace.  
+-  **7d_avg_pace vs. Percentage**: Clustered points (e.g., 90% of runs within ±0.5 min/km of weekly average) suggest runners prioritize **steady effort levels**, likely aligning with heart rate zones or goal marathon pace.  
 
 ### **3. Outliers & Data Anomalies**  
-- ⚠️ **Total Distance > 150 km/week**: A small cluster of runners logging extreme mileage may represent elite athletes or data errors.  
-- ❓ **Unlabeled "Percentage" Variable**: Requires clarification (e.g., % of max heart rate, hill gradient, or workout completion rate).  
+-  **Total Distance > 150 km/week**: A small cluster of runners logging extreme mileage may represent elite athletes or data errors.  
+- **Unlabeled "Percentage" Variable**: Requires clarification (e.g., % of max heart rate, hill gradient, or workout completion rate).  
 
 ---
 
@@ -305,13 +305,12 @@ df = df.sort_values(['athlete','datetime'])
 df['7d_avg_pace']      = df.groupby('athlete')['pace'].rolling(7, min_periods=1).mean().reset_index(0,drop=True)
 df['7d_total_distance'] = df.groupby('athlete')['distance'].rolling(7, min_periods=1).sum().reset_index(0,drop=True)
 Lag features:
-
+```
 ```python
-Edit
 df['prev_pace']       = df.groupby('athlete')['pace'].shift(1).fillna(df['pace'])
 df['days_since_last'] = df.groupby('athlete')['datetime'].diff().dt.days.fillna(7)
 Cumulative distance:
-
+```
 ```python
 df['cum_dist'] = df.groupby('athlete')['distance'].cumsum()
 These features capture recent load, recovery, and long-term volume.
