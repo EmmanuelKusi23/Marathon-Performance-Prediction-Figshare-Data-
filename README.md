@@ -145,7 +145,7 @@ The boxplot summarizes training sessions from marathon runners, showing medians,
 This visualization supports data-driven coaching and smarter self-monitoring for marathon success.
 ![Boxplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/25cc7897b3901752e1ad10b0c780b2f69775e890/boxplot%20.png)
 
-## Analysis: Pace vs. Distance in Marathon Training
+### Analysis: Pace vs. Distance in Marathon Training
 ![Scatterplot](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/71da31496282b920e6aff597083c3fdcf71bb627/pace%20vs%20distance.png)
 
 This scatter‐plot examines how pace (min/km) varies with run distance (km). Key takeaways:
@@ -171,7 +171,7 @@ This scatter‐plot examines how pace (min/km) varies with run distance (km). Ke
 
 > By resolving data issues and exploring these patterns, coaches and athletes can optimize the balance between speedwork and endurance for more effective marathon preparation.
 
-3. Feature Correlations
+### Feature Correlations
 ![Correlation Matrix](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/e474e8b6b4699295830041e4da508ddf97fb7d6c/correlation%20matrix.png)
 This correlation analysis explores the relationships between key variables in a marathon training dataset using a **correlation matrix**. The analysis helps athletes and coaches optimize training strategies through data-driven insights.
 
