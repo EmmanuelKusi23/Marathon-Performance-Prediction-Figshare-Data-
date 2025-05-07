@@ -373,7 +373,7 @@ print("CV MAE:", -grid.best_score_)
 ```
 On the held-out test set:
 
-arduino
+
 Test MAE: 0.095 min/km  
 Test R²:  0.416
 
