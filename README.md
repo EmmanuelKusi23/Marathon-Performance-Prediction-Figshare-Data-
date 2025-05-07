@@ -68,7 +68,7 @@ This explores the distribution of key running metrics in a marathon training dat
 
 The distribution of individual run distances highlights training habits, revealing many shorter runs for recovery and frequent mid-length workouts, with occasional long runs creating a right-skewed shape.
 
-![Distance Distribution](images/distribution_of_distance.png)
+![Distance Distribution](distribution_of_distance.png)
 
 ### 2. Duration
 
