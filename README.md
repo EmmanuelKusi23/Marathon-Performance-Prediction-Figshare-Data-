@@ -54,53 +54,86 @@ Key columns: distance (km), duration (min), gender, age_group, country, major.
 
 I visualized key patterns in the data. For example, histograms of run times or distances help reveal their distributions. The figure below illustrates a histogram-like distribution of marathon finish times (from an example race); most runners finish around 3–5 hours, with female runners (red) tending toward slightly longer times than males (blue)【50†】. This highlights how performance varies by gender and distance. 
 
-Figure: Distribution of marathon finish times by gender (blue = men, red = women). This kind of histogram shows that most finishers cluster around 4 hours, with women on average finishing later than men【50†】. We also used boxplots to compare distributions across groups. For instance, the plot below shows a sample boxplot (of “LADs” metric across three clusters). Each box spans the interquartile range with a median line, whiskers to show the full range, and outliers marked individually. In our project one could create similar boxplots of running pace or distance broken down by age group or country to compare training volume or intensity across subgroups【59†】. 
+# Distribution of Marathon Run Metrics
 
-Figure: Example boxplot comparison across three categories. Boxplots (one per category) visualize the distribution (median, IQR, and outliers) of a numeric variable. In practice we would use this to compare, say, average pace across different age groups or countries【59†】. We computed a correlation matrix and plotted it as a heatmap to detect strong relationships between variables. The heatmap below (for a different example dataset) illustrates how pairwise feature correlations range from –0.4 (deep blue) to +1.0 (bright red)【67†】. In our running data, we would inspect correlations among distance, duration, pace, and engineered features (e.g. 7-day totals) to identify redundancies. For example, distance and duration are highly correlated (longer runs take more time), which would appear as a bright diagonal element if plotted. 
+This explores the distribution of key running metrics in a marathon training dataset. Each section includes:
 
-Figure: Correlation matrix heatmap (from an example dataset). Colors indicate the strength and sign of pairwise correlations (red = strong positive, blue = strong negative). In our analysis, a similar heatmap would help spot which running features (distance, duration, pace, cumulative distance, etc.) are strongly related【67†】. We also examined time series trends in the data. For example, one can aggregate runs by day or week to see how activity changed over time (e.g. to assess seasonal effects or the impact of events like races or lockdowns). The chart below (from a different example) shows multiple time series on the same axes. In our context we might plot daily total distance or average pace for each week of 2020, highlighting trends or anomalies over the year【70†】. Such plots can reveal patterns like gradually increasing training volume or sudden drops (e.g. due to COVID-19 restrictions). 
+1. A descriptive analysis of the distribution plot.  
+2. The corresponding plot image.  
+3. The Python code used to generate the plot.
 
-Figure: Multi-line time series chart (example). Each colored line tracks a count over time. In our project we would create similar plots (e.g. daily or weekly aggregate distance) to visualize how training loads evolve throughout the year【70†】.
+---
+
+### 1. Distance
+
+The distribution of individual run distances highlights training habits, revealing many shorter runs for recovery and frequent mid-length workouts, with occasional long runs creating a right-skewed shape.
+
+![Distance Distribution](images/distance_distribution.png)
+
+### 2. Duration
+
+Run durations mirror distances, showing most workouts are shorter in time, with the long runs appearing less frequently, confirming a right-skewed duration distribution.
+
+![Duration Distribution](images/duration_distribution.png)
+
+
+### 3. Pace
+
+Pace distribution centers around the athlete’s typical training speeds. The histogram is roughly unimodal, with tails showing very slow recovery runs or faster race efforts.
+
+![Pace Distribution](images/pace_distribution.png)
+
+
+### 4. 7-Day Average Pace
+
+Averaging pace over 7-day windows smooths daily variability, highlighting longer-term trends in performance.
+
+![7d Average Pace Distribution](images/7d_avg_pace_distribution.png)
+
+
+
+
+### 5. 7-Day Total Distance
+
+Weekly mileage distribution is critical for monitoring training volume. A bimodal pattern often emerges if the athlete alternates heavy and light weeks.
+
+![7d Total Distance Distribution](images/7d_total_distance_distribution.png)
+
+
+
+**Conclusion:** These distributions provide insight into training patterns, variability, and workload. Including both daily and rolling-window analyses offers a comprehensive view of an athlete's performance and training load over time.
 1. Pace Distribution
-python
-Copy
-Edit
+```python
 df['pace'] = df['duration'] / df['distance']
 sns.histplot(df['pace'], bins=50, kde=True)
 plt.title('Distribution of Running Pace (min/km)')
 plt.xlabel('Pace (min per km)')
 plt.show()
-
+```
 Figure: Most runs cluster between 4 and 6 min/km. The KDE curve highlights skew toward slower paces.
 
 2. Pace by Age Group
-python
-Copy
-Edit
+```python
 sns.boxplot(x='age_group', y='pace', data=df)
 plt.title('Pace by Age Group')
 plt.xlabel('Age Group')
 plt.ylabel('Pace (min/km)')
 plt.show()
-
+```
 Figure: Boxplots reveal that younger athletes (18–34) tend to have slightly faster median paces than older groups (35–54, 55+).
 
 3. Feature Correlations
-python
-Copy
-Edit
+```python
 features = ['distance','duration','pace']
 corr = df[features].corr()
 sns.heatmap(corr, annot=True, cmap='coolwarm')
 plt.title('Correlation Matrix')
 plt.show()
-
+```
 Figure: Strong positive correlation between distance and duration (ρ≈0.85); pace moderately inversely correlated with distance.
 
 4. Time-Series of Weekly Volume
-python
-Copy
-Edit
+```python
 df['week'] = df['datetime'].dt.isocalendar().week
 weekly = df.groupby('week')['distance'].sum().reset_index()
 sns.lineplot(x='week', y='distance', data=weekly)
@@ -108,7 +141,7 @@ plt.title('Weekly Total Distance in 2020')
 plt.xlabel('ISO Week')
 plt.ylabel('Total Distance (km)')
 plt.show()
-
+```
 Figure: Displays training load fluctuations—notice dips around typical holiday periods.
 
 ## Data Cleaning & Preprocessing
