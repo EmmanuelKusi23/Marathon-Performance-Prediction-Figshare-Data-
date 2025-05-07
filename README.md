@@ -342,11 +342,12 @@ for name, mdl in models:
     results.append((name, mae, r2))
 
 print(pd.DataFrame(results, columns=['Model','MAE','R²']).sort_values('MAE'))
+```
 Model	MAE (min/km)	R²
 Ridge	0.0036	0.9999
 RF	0.0788	0.9110
 Lasso	0.1019	0.9812
-```
+
 Ridge overfits; RF chosen for generalization.
 The Ridge regression achieved almost perfect R² on training CV (because it can fit near-unique patterns), while the Random Forest had a higher MAE and lower R²
 file-sajk4m61jhez8qrnbxbcny
@@ -369,12 +370,13 @@ grid.fit(X_train, y_train)
 
 print("Best params:", grid.best_params_)
 print("CV MAE:", -grid.best_score_)
+```
 On the held-out test set:
 
 arduino
 Test MAE: 0.095 min/km  
 Test R²:  0.416
-```
+
 ## Feature Importances
 ### Top 10 Feature Importances for Marathon Performance Prediction
 
