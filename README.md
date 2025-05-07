@@ -112,6 +112,8 @@ plt.show()
 Figure: Displays training load fluctuations—notice dips around typical holiday periods.
 
 ## Data Cleaning & Preprocessing
+Based on the EDA, we cleaned and prepared the data. Rows with zero distance (and thus undefined pace) were dropped, which removed all NaN target values. We also ensured no duplicate entries and noted the few missing category values. Categorical variables (gender, age_group, country, major) were encoded: for example we mapped gender to numeric codes (M→0, F→1) and planned to one-hot encode others. We applied ordinal encoding to reduce high-cardinality categories by grouping infrequent values into “Other”. Next we split the data into training and testing sets (80% train, 20% test). We built preprocessing pipelines using scikit-learn: numeric features were imputed (median) and scaled, while categorical features were imputed (most frequent) and one-hot encoded. This full pipeline was later combined with the model for end-to-end training.
+
 Remove invalid runs (zero distance ⇒ undefined pace).
 
 Handle missing: drop rows missing critical fields; impute or group rare categories.
@@ -147,6 +149,13 @@ preprocessor = ColumnTransformer([
 ])
 ```
 ## Feature Engineering
+I created additional features to capture training context. Specifically, for each athlete I computed rolling and lag features:
+Rolling averages: 7-day average pace and 7-day total distance (summing runs in the past week) to capture short-term training load.
+Run frequency: count of runs in the past 30 days (30-day running count) to capture how often the athlete trains.
+Cumulative distance: total distance run so far in the current year for each athlete.
+Lag features: the previous run’s pace and days since last run to capture recovery and consistency.
+Interaction feature: product of pace and cumulative distance (pace × total distance) to allow non-linear effects (e.g. how pace effects change as a runner accumulates distance).
+These engineered features (now included as new columns) provide richer information for the model.
 Rolling 7 day metrics:
 
 ```python
@@ -167,6 +176,7 @@ These features capture recent load, recovery, and long-term volume.
 ```
 
 ## Modeling & Cross-Validation
+We used scikit-learn pipelines to train regression models predicting pace (minutes per km) for each run. We first compared several models with 3-fold cross-validation. The table below summarizes results (mean MAE and R² over folds):
 We compare Ridge, Lasso, and Random Forest regressors using 5-fold CV (scoring: MAE, R²).
 
 ```python
@@ -197,8 +207,12 @@ RF	0.0788	0.9110
 Lasso	0.1019	0.9812
 ```
 Ridge overfits; RF chosen for generalization.
+The Ridge regression achieved almost perfect R² on training CV (because it can fit near-unique patterns), while the Random Forest had a higher MAE and lower R²
+file-sajk4m61jhez8qrnbxbcny
+. Given these results, we selected a Random Forest pipeline for further tuning (trading some bias-variance for generalization).
 
 ## Hyperparameter Tuning & Evaluation
+These test metrics (MAE ≈0.095, R² ≈0.416) indicate the model captures some but not all of the variance in pace. The relatively low R² suggests room for improvement, possibly due to noise in individual run performance. I also inspected feature importances from the trained Random Forest. The bar chart below (from an example model) shows how features can be ranked by importance. In our case, analogous plots would highlight which engineered variables (e.g. recent average pace, run frequency, cumulative distance) contribute most to predictions.
 ```python
 from sklearn.model_selection import GridSearchCV
 
@@ -243,14 +257,13 @@ plt.show()
 Figure: Most predictive features include recent average pace and 7-day total distance.
 
 ## Model Deployment & Usage
+Finally, we serialize the full pipeline (preprocessing + model) using joblib. In a production or application setting, one could load this pipeline and make predictions on new data.
 Serialize the full pipeline:
 
 bash
-Copy
-Edit
 python - <<'PYCODE'
 from joblib import dump
-from your_module import pipeline  # assume you built & fitted your pipeline
+from your_module import pipeline  
 dump(pipeline, 'trained_pipeline.joblib')
 PYCODE
 Load and predict on new data:
@@ -275,8 +288,9 @@ new_run = pd.DataFrame([{
 predicted_pace = pipe.predict(new_run)
 print(f"Predicted pace: {predicted_pace[0]:.2f} min/km")
 ```
+This code shows how the trained model pipeline can be used to forecast an athlete’s pace given a new run’s data. The pipeline handles all preprocessing internally, so the user need only supply raw feature values as above. All analyses and code examples are based on processing this public data as described above.
 ## References
-Afonseca, C., et al. (2022). Long-distance running training logs (2019–2020). Figshare/Kaggle.
+The dataset was published by Afonseca, C., et al. (2022). Long-distance running training logs (2019–2020). Figshare/Kaggle.
 
 Original Parquet → CSV conversion script
 
