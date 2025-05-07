@@ -97,7 +97,7 @@ Averaging pace over 7-day windows smooths daily variability, highlighting longer
 
 Weekly mileage distribution is critical for monitoring training volume. A bimodal pattern often emerges if the athlete alternates heavy and light weeks.
 
-![7d Total Distance Distribution](images/7d_total_distance_distribution.png)
+![7d Total Distance Distribution](https://github.com/EmmanuelKusi23/Marathon-Performance-Prediction-Figshare-Data-/blob/3816b4c1bd3930bc2c8f98c71d4c64a67f1ace5e/distribution%20of%20distance%204.png)
 
 
 
